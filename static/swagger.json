@@ -1,0 +1,87 @@
+{
+    "openapi" : "3.0.0",
+    "info" : {
+        "description" : "Jemmy Perez" ,
+        "version " : "1.0.0" , 
+        "title" : "Examen" , 
+        "contact": {
+            "email" : "jemmyperez28@gmail.com"
+        },
+        "license" : {
+            "name" : "MIT",
+            "url": ""
+        }
+    },
+    "servers": [
+        {
+          "url": "/"
+        }
+      ],
+      "components": {
+          "schemas" :{
+            "Persona" : {
+                "type" : "object",
+                "properties" : {
+                    "idpersona" : {
+                        "type" : "int",
+                        "format" : "int" 
+                    },
+                    "nombre" : {
+                        "type" : "string",
+                        "format" : "string"
+                    }
+                }
+            }
+              
+          }
+          
+      },
+      "paths": {
+        "/persona/get_all_persona": {
+          "get": {
+            "tags": [
+              "Persona Request"
+            ],
+            "summary": "Retorna Todas las Personas",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#"
+                          }
+                    }
+                        }
+                }
+            },
+            "/persona/get_persona_by_id/{id}": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de la persona",
+                      "type": "int"
+                    }
+                  ],
+                "get": {
+                  "tags": [
+                    "Persona Request"
+                  ],
+                  "summary": "Retorna la Persona dado el ID",
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#"
+                                }
+                          }
+                              }
+                      }
+                  }
+            
+        }
+}
+        
+        
+
+       
