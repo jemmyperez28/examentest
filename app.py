@@ -19,8 +19,6 @@ migrate = Migrate(app, db)
 #Registro de Blueprints
 app.register_blueprint(persona)
 
-
-
 SWAGGER_URL = '/swagger'
 API_URL = '/static/swagger.json'
 swaggerui_blueprint = get_swaggerui_blueprint(
@@ -31,7 +29,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     }
 )
 
-app.register_blueprint(swaggerui_blueprint, url_prefix =SWAGGER_URL)
+app.register_blueprint(swaggerui_blueprint, url_prefix = SWAGGER_URL)
 
 @app.route('/static/<path:path>')
 def send_static(path):
