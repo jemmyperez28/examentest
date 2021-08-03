@@ -1,0 +1,1 @@
+ERROR_TIPO="Error con los Tipos de Datos Enviados"

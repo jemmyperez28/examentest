@@ -22,10 +22,6 @@
             "Persona" : {
                 "type" : "object",
                 "properties" : {
-                    "idpersona" : {
-                        "type" : "int",
-                        "format" : "int" 
-                    },
                     "nombre" : {
                         "type" : "string",
                         "format" : "string"
@@ -77,9 +73,39 @@
                           }
                               }
                       }
-                  }
+                  },
+                  "/persona/nueva_persona": {
+                    "post": {
+                      "consumes" : "application/json",
+                      "tags": [
+                        "Persona Request Post"
+                      ],
+                      "summary": "Inserta una nueva Persona",
+                     "requestBody": {
+                         "description": "Insetar el nombre" , 
+                         "required" : "True",
+                         "content" : {
+                             "application/json":{
+                                 "schema": {
+                                     "$ref": "#/components/schemas/Persona"
+                                 }
+                             },
+                         "text/plain" : {
+                             "schema": {
+                                 "type":"string"
+                             }
+                         }            
+                         }
+                     },
+                      "responses": {
+                        "200": {
+                          "description": "Registro Insertado"
+                              }
+                                  }
+                          }   
+                      }
             
-        }
+             }
 }
         
         
