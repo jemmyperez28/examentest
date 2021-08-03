@@ -33,8 +33,15 @@ class Persona(db.Model):
         persona = Persona.query.filter_by(idpersona=idpersona).first()
         persona_schema = PersonaSchema(many=False)
         datos = persona_schema.dump(persona)
-        return jsonify({'persona' : datos})
+        return make_response(jsonify({'persona' : datos}),200)
     
+    def get_mascotas(idpersona:int)->jsonify:
+        '''Obtiene las mascotas de la Persona in:(idpersona). Output:Json type'''
+        mascotas = Mascota.query.with_entities(Mascota.idmascota,Mascota.nombre_mascota).filter_by(idpersona=idpersona).all()
+        mascotas_schema = MascotaSchema(many=True)
+        datos = mascotas_schema.dump(mascotas)
+        return make_response(jsonify({'mascotas' : datos}),200) 
+
     def get_all_persona()->jsonify:
         '''
         Obtiene los datos de las Personas
@@ -76,7 +83,9 @@ class Persona(db.Model):
             response.headers["Content-Type"] = "application/json"
         except exc.SQLAlchemyError as e:
             response = make_response(jsonify({'Error' : str(e._sql_message)}),500)
-        return response       
+        return response  
+ 
+
 
 class Mascota(db.Model):
     idmascota = db.Column(db.Integer , primary_key = True)

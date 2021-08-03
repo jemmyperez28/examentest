@@ -27,16 +27,32 @@
                         "format" : "string"
                     }
                 }
-            }
-              
+            },
+            "Mascota" : {
+              "type" : "object",
+              "properties" : {
+                "nombre_mascota" : {
+                  "type" : "string",
+                  "format" : "string"
+              },
+              "tipo" : {
+                "type" : "string",
+                "format" : "string"
+            },
+            "idpersona" : {
+              "type" : "integer",
+              "format" : "integer"
+              }
+              }
           }
-          
+              
+          }       
       },
       "paths": {
         "/persona/get_all_persona": {
           "get": {
             "tags": [
-              "Persona Request"
+              "Persona Get Requests"
             ],
             "summary": "Retorna Todas las Personas",
             "responses": {
@@ -49,6 +65,31 @@
                         }
                 }
             },
+            "/persona/get_mascotas/{id}": {
+              "parameters": [
+                  {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID de la persona",
+                    "type": "int"
+                  }
+                ],
+              "get": {
+                "tags": [
+                  "Persona Get Requests"
+                ],
+                "summary": "Retorna Todas las mascotas pertenecientes a la persona",
+                "responses": {
+                  "200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#"
+                              }
+                        }
+                            }
+                    }
+                },
             "/persona/get_persona_by_id/{id}": {
                 "parameters": [
                     {
@@ -61,7 +102,7 @@
                   ],
                 "get": {
                   "tags": [
-                    "Persona Request"
+                    "Persona Get Requests"
                   ],
                   "summary": "Retorna la Persona dado el ID",
                   "responses": {
@@ -78,7 +119,7 @@
                     "post": {
                       "consumes" : "application/json",
                       "tags": [
-                        "Persona Request Post"
+                        "Persona Post Requests"
                       ],
                       "summary": "Inserta una nueva Persona",
                      "requestBody": {
@@ -103,7 +144,38 @@
                               }
                                   }
                           }   
-                      }
+                      },
+                      "/persona/nueva_mascota": {
+                        "post": {
+                          "consumes" : "application/json",
+                          "tags": [
+                            "Persona Post Requests"
+                          ],
+                          "summary": "Inserta una nueva Mascota , Perteneciente a una persona (idpersona)",
+                         "requestBody": {
+                             "description": "Insetar nombre_mascota, idpersona , tipo" , 
+                             "required" : "True",
+                             "content" : {
+                                 "application/json":{
+                                     "schema": {
+                                         "$ref": "#/components/schemas/Mascota"
+                                     }
+                                 },
+                             "text/plain" : {
+                                 "schema": {
+                                     "type":"string"
+                                 }
+                             }            
+                             }
+                         },
+                          "responses": {
+                            "200": {
+                              "description": "Registro Insertado"
+                                  }
+                                      }
+                              }   
+                          }
+
             
              }
 }

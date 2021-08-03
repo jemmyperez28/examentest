@@ -9,5 +9,7 @@ mascotavalidator = {'nombre_mascota': {'type':'string' , 'required':True},
                      'idpersona' : {'type' : 'integer','required':True}
                      }
 
+
 personav = Validator(personavalidator)
 mascotav = Validator(mascotavalidator)
+
