@@ -17,7 +17,8 @@ Instrucciones :
 Nota : 
 Documentacion de los endpoints swagger en ruta : http://localhost:5000/swagger
 Algunos endpoints estan pendientes , casi todos los de "Persona" se realizaron e ivan a seguir la misma estructura.
-independientemente del resultado de la evaluacion , agradezco a esta practica ya que fue de mucha ayuda como autoaprendizaje.
+No pude realizar muchos features.
+independientemente del resultado de la evaluacion , agradezco a esta practica ya que fue de mucha ayuda como autoaprendizaje en documentacion y BDD.
 
 Saludos
 
