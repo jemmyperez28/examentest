@@ -1,1 +1,10 @@
 ERROR_TIPO="Error con los Tipos de Datos Enviados"
+ERROR_COMIDA_PODRIDA="La Comida no se puede Consumir"
+ERROR_COMIDA_CONSUMIDA="La Comida ya ha sido consumida"
+SUCCESFULL = "Registro Agregado Correctamente"
+PUNTOS_PERSONA=20
+PUNTOS_SUENO=20
+PUNTOS_MASCOTA_COMER = 70
+PUNTOS_MASCOTA_COMER_PODRIDO = -40
+PUNTOS_MASCOTA_SUENO = 20
+SI="si"

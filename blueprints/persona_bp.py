@@ -65,4 +65,84 @@ def get_mascotas(id:int):
     '''Endpoint que muestra todas las mascotas de una persona (idpersona)'''
     data = Persona.get_mascotas(id)
     return data
+
+@persona.route('/persona/nueva_comida' , methods=['POST'])
+def nueva_comida():
+    '''Agrega Una nueva comida perteneciente a una persona (idpersona)'''
+    comida = request.json
+    #Validacion (validators.py)
+    if comidav.validate(comida):
+        data = Persona.preparar_comida(comida)
+        return data 
+    else : 
+        response = make_response(
+                jsonify(
+                    {"message": str(ERROR_TIPO), "severity": "danger"}
+                ),
+                400,
+            )
+        response.headers["Content-Type"] = "application/json"
+        return response
+
+@persona.route('/persona/comer' , methods=['POST'])
+def comer():
+    '''Metodo : Persona comer'''
+    datos = request.json
+    #validacion
+    if comerv.validate(datos):
+        data = Persona.comer(datos)
+        return data 
+    else : 
+        response = make_response(
+                jsonify(
+                    {"message": str(ERROR_TIPO), "severity": "danger"}
+                ),
+                400,
+            )
+        response.headers["Content-Type"] = "application/json"
+        return response
+
+@persona.route('/persona/dormir' , methods=['POST'])
+def dormir():
+    datos = request.json
+    #validacion
+    if idpv.validate(datos):
+        data = Persona.dormir(datos)
+        return data 
+    else : 
+        response = make_response(
+                jsonify(
+                    {"message": str(ERROR_TIPO), "severity": "danger"}
+                ),
+                400,
+            )
+        response.headers["Content-Type"] = "application/json"
+        return response
+
+@persona.route('/persona/get_presentacion/<int:id>' , methods=['GET'])
+def get_presentacion(id:int):
+    '''Endpoint que presenta los datos de una persona (idpersona)'''
+    data = Persona.presentarse(id)
+    return data
+
+@persona.route('/persona/dar_comida', methods=['POST'])
+def dar_comida():
+    '''Metodo que da de comer a una mascota una comida'''
+    datos = request.json 
+    if darcomerv.validate(datos):
+        data = Persona.dar_comida(datos)
+        return data 
+    else : 
+        response = make_response(
+                jsonify(
+                    {"message": str(ERROR_TIPO), "severity": "danger"}
+                ),
+                400,
+            )
+        response.headers["Content-Type"] = "application/json"
+        return response
+
+
+
+
   

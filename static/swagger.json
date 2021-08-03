@@ -44,9 +44,112 @@
               "format" : "integer"
               }
               }
+          },
+          "Comida" : {
+            "type" : "object",
+            "properties" : {
+              "nombre_comida" : {
+                "type" : "string",
+                "format" : "string"
+            },
+            "fecha_caducidad" : {
+              "type" : "string",
+              "format" : "date"
+          },
+          "idpersona" : {
+            "type" : "integer",
+            "format" : "integer"
+            }
+            }
+        }, "persona_comer" : {
+          "type" : "object",
+          "properties" : {
+              "idpersona" : {
+                  "type" : "integer",
+                  "format" : "integer"
+              },
+              "idcomida" : {
+                "type" : "integer",
+                "format" : "integer"
+            }
           }
-              
-          }       
+      }, "persona_dormir" : {
+        "type" : "object",
+        "properties" : {
+            "idpersona" : {
+                "type" : "integer",
+                "format" : "integer"
+                    }
+                }
+            },
+             "persona_dar_comer" : {
+              "type" : "object",
+              "properties" : {
+                  "idmascota" : {
+                      "type" : "integer",
+                      "format" : "integer"
+                          },
+                        "idcomida" : {
+                        "type" : "integer",
+                        "format" : "integer"
+                                }
+                      }
+                  },
+                  "mascota_comer" : {
+                    "type" : "object",
+                    "properties" : {
+                        "idmascota" : {
+                            "type" : "integer",
+                            "format" : "integer"
+                        },
+                        "idcomida" : {
+                          "type" : "integer",
+                          "format" : "integer"
+                      }
+                    }
+                },
+                "mascota_morir" : {
+                  "type" : "object",
+                  "properties" : {
+                      "idmascota" : {
+                          "type" : "integer",
+                          "format" : "integer"
+                      }
+                  }
+              } ,
+              "comida_pudrir" : {
+                "type" : "object",
+                "properties" : {
+                    "idcomida" : {
+                        "type" : "integer",
+                        "format" : "integer"
+                    }
+                }
+            },
+            "gusto_mascota" : {
+              "type" : "object",
+              "properties" : {
+                  "idcomida" : {
+                      "type" : "integer",
+                      "format" : "integer"
+                  },
+                  "idmascota" : {
+                    "type" : "integer",
+                    "format" : "integer"
+                },
+                "favorito" : {
+                  "type" : "string",
+                  "format" : "string",
+                  "example" :"no"              
+              },
+              "comestible" : {
+                "type" : "string",
+                "format" : "string",
+                "example" :"si"
+              }
+          }                  
+          }  
+          }      
       },
       "paths": {
         "/persona/get_all_persona": {
@@ -128,7 +231,7 @@
                          "content" : {
                              "application/json":{
                                  "schema": {
-                                     "$ref": "#/components/schemas/Persona"
+                                     "": ""
                                  }
                              },
                          "text/plain" : {
@@ -174,11 +277,325 @@
                                   }
                                       }
                               }   
-                          }
-
-            
+                          },
+                          "/persona/nueva_comida": {
+                            "post": {
+                              "consumes" : "application/json",
+                              "tags": [
+                                "Persona Post Requests"
+                              ],
+                              "summary": "Inserta una nueva Comida , Perteneciente a una persona (idpersona)",
+                             "requestBody": {
+                                 "description": "Insetar nombre_comida, fecha_caducidad , idpersona" , 
+                                 "required" : "True",
+                                 "content" : {
+                                     "application/json":{
+                                         "schema": {
+                                             "$ref": "#/components/schemas/Comida"
+                                         }
+                                     },
+                                 "text/plain" : {
+                                     "schema": {
+                                         "type":"string"
+                                     }
+                                 }            
+                                 }
+                             },
+                              "responses": {
+                                "200": {
+                                  "description": "Registro Insertado"
+                                      }
+                                          }
+                                  }   
+                              },
+                              "/persona/comer": {
+                                "post": {
+                                  "consumes" : "application/json",
+                                  "tags": [
+                                    "Persona Post Requests"
+                                  ],
+                                  "summary": "Accion de Comer para una persona",
+                                 "requestBody": {
+                                     "description": "Datos input idpersona que comera, idcomida que se comera" , 
+                                     "required" : "True",
+                                     "content" : {
+                                         "application/json":{
+                                             "schema": {
+                                              "$ref": "#/components/schemas/persona_comer"
+                                             }
+                                         },
+                                     "text/plain" : {
+                                         "schema": {
+                                             "type":"string"
+                                         }
+                                     }            
+                                     }
+                                 },
+                                  "responses": {
+                                    "200": {
+                                      "description": "Registro Insertado"
+                                          }
+                                              }
+                                      }   
+                                  },
+                                  "/persona/dormir": {
+                                    "post": {
+                                      "consumes" : "application/json",
+                                      "tags": [
+                                        "Persona Post Requests"
+                                      ],
+                                      "summary": "Accion de Dormir para una persona",
+                                     "requestBody": {
+                                         "description": "Datos input idpersona que dormira" , 
+                                         "required" : "True",
+                                         "content" : {
+                                             "application/json":{
+                                                 "schema": {
+                                                  "$ref": "#/components/schemas/persona_dormir"
+                                                 }
+                                             },
+                                         "text/plain" : {
+                                             "schema": {
+                                                 "type":"string"
+                                             }
+                                         }            
+                                         }
+                                     },
+                                      "responses": {
+                                        "200": {
+                                          "description": "Registro Actualizado"
+                                              }
+                                                  }
+                                          }   
+                                      } ,
+                          "/persona/get_presentacion/{id}": {
+                            "parameters": [
+                                {
+                                  "name": "id",
+                                  "in": "path",
+                                  "required": true,
+                                  "description": "ID de la persona",
+                                  "type": "int"
+                                }
+                              ],
+                            "get": {
+                              "tags": [
+                                "Persona Get Requests"
+                              ],
+                              "summary": "Retorna los datos de la persona",
+                              "responses": {
+                                "200": {
+                                  "description": "OK",
+                                  "schema": {
+                                    "$ref": "#"
+                                            }
+                                      }
+                                          }
+                                  }
+                              },
+                              "/persona/dar_comida": {
+                                "post": {
+                                  "consumes" : "application/json",
+                                  "tags": [
+                                    "Persona Post Requests"
+                                  ],
+                                  "summary": "Accion de dar de comer a una Mascota, idmascota , idcomida",
+                                 "requestBody": {
+                                     "description": "Datos input idmascota , idcomida" , 
+                                     "required" : "True",
+                                     "content" : {
+                                         "application/json":{
+                                             "schema": {
+                                              "$ref": "#/components/schemas/persona_dar_comer"
+                                             }
+                                         },
+                                     "text/plain" : {
+                                         "schema": {
+                                             "type":"string"
+                                         }
+                                     }            
+                                     }
+                                 },
+                                  "responses": {
+                                    "200": {
+                                      "description": "Registro Actualizado"
+                                          }
+                                              }
+                                      }   
+                                  } ,
+                                  "/mascota/comer": {
+                                    "post": {
+                                      "consumes" : "application/json",
+                                      "tags": [
+                                        "Mascota Post Requests"
+                                      ],
+                                      "summary": "Accion de Comer para una mascota",
+                                     "requestBody": {
+                                         "description": "Datos input idmascota que comera, idcomida que se comera" , 
+                                         "required" : "True",
+                                         "content" : {
+                                             "application/json":{
+                                                 "schema": {
+                                                  "$ref": "#/components/schemas/mascota_comer"
+                                                 }
+                                             },
+                                         "text/plain" : {
+                                             "schema": {
+                                                 "type":"string"
+                                             }
+                                         }            
+                                         }
+                                     },
+                                      "responses": {
+                                        "200": {
+                                          "description": "Registro Insertado"
+                                              }
+                                                  }
+                                          }   
+                                      },
+                                      "/mascota/saludar/{id}": {
+                                        "parameters": [
+                                            {
+                                              "name": "id",
+                                              "in": "path",
+                                              "required": true,
+                                              "description": "ID de la mascota que saludara",
+                                              "type": "int"
+                                            }
+                                          ],
+                                        "get": {
+                                          "tags": [
+                                            "Mascota Get Requests"
+                                          ],
+                                          "summary": "Retorna el saludo de la mascota",
+                                          "responses": {
+                                            "200": {
+                                              "description": "OK",
+                                              "schema": {
+                                                "$ref": "#"
+                                                        }
+                                                  }
+                                                      }
+                                              }
+                                          },
+                                          "/mascota/dormir/{id}": {
+                                            "parameters": [
+                                                {
+                                                  "name": "id",
+                                                  "in": "path",
+                                                  "required": true,
+                                                  "description": "ID de la mascota que dormira",
+                                                  "type": "int"
+                                                }
+                                              ],
+                                            "get": {
+                                              "tags": [
+                                                "Mascota Post Requests"
+                                              ],
+                                              "summary": "Aumenta puntos de sueno de mascota",
+                                              "responses": {
+                                                "200": {
+                                                  "description": "OK",
+                                                  "schema": {
+                                                    "$ref": "#"
+                                                            }
+                                                      }
+                                                          }
+                                                  }
+                                              },
+                                          "/mascota/morir": {
+                                            "post": {
+                                              "consumes" : "application/json",
+                                              "tags": [
+                                                "Mascota Post Requests"
+                                              ],
+                                              "summary": "Mata una mascota",
+                                            "requestBody": {
+                                                "description": "Insertar id de la mascota" , 
+                                                "required" : "True",
+                                                "content" : {
+                                                    "application/json":{
+                                                        "schema": {
+                                                          "$ref": "#/components/schemas/mascota_morir"
+                                                        }
+                                                    },
+                                                "text/plain" : {
+                                                    "schema": {
+                                                        "type":"string"
+                                                    }
+                                                }            
+                                                }
+                                            },
+                                              "responses": {
+                                                "200": {
+                                                  "description": "Registro Insertado"
+                                                      }
+                                                          }
+                                                  }   
+                                              },
+                                              "/comida/pudrir": {
+                                                "post": {
+                                                  "consumes" : "application/json",
+                                                  "tags": [
+                                                    "Comida Post Requests"
+                                                  ],
+                                                  "summary": "Pudre una comida (idcomida)",
+                                                "requestBody": {
+                                                    "description": "Insertar id de la comida" , 
+                                                    "required" : "True",
+                                                    "content" : {
+                                                        "application/json":{
+                                                            "schema": {
+                                                              "$ref": "#/components/schemas/comida_pudrir"
+                                                            }
+                                                        },
+                                                    "text/plain" : {
+                                                        "schema": {
+                                                            "type":"string"
+                                                        }
+                                                    }            
+                                                    }
+                                                },
+                                                  "responses": {
+                                                    "200": {
+                                                      "description": "OK"
+                                                          }
+                                                              }
+                                                      }   
+                                                  },
+                                                  "/comida/nuevo_gusto": {
+                                                    "post": {
+                                                      "consumes" : "application/json",
+                                                      "tags": [
+                                                        "Comida Post Requests"
+                                                      ],
+                                                      "summary": "Añade una Comida a la Mascota Seleccionada para decidir si es su favorita o la puede comer",
+                                                    "requestBody": {
+                                                        "description": "insertar : idcomida , idmascota , favorito, comestible" , 
+                                                        "required" : "True",
+                                                        "content" : {
+                                                            "application/json":{
+                                                                "schema": {
+                                                                  "$ref": "#/components/schemas/gusto_mascota"
+                                                                }
+                                                            },
+                                                        "text/plain" : {
+                                                            "schema": {
+                                                                "type":"string"
+                                                            }
+                                                        }            
+                                                        }
+                                                    },
+                                                      "responses": {
+                                                        "200": {
+                                                          "description": "OK"
+                                                              }
+                                                                  }
+                                                          }   
+                                                      }
              }
 }
+
         
         
 
